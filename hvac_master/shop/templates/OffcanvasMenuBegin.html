@@ -11,12 +11,16 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <ul class="offcanvas__widget__add">
-            <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
-            <li><i class="fa fa-envelope-o"></i> Info.colorlib@gmail.com</li>
+            {% for header in top_headers %}
+                <li><i class="fa fa-clock-o"></i> Week day: {{ header.shift }}</li>
+                <li><i class="fa fa-envelope-o"></i> {{ header.email }}</li>
+            {% endfor %}
         </ul>
         <div class="offcanvas__phone__num">
             <i class="fa fa-phone"></i>
-            <span>(+12) 345 678 910</span>
+            {% for header in top_headers %}
+                <span>{{ header.phone }}</span>
+            {% endfor %}
         </div>
         <div class="offcanvas__social">
             <a href="#"><i class="fa fa-facebook"></i></a>

@@ -5,42 +5,95 @@ from .models import *
 # Create your views here.
 
 def index(request):
+    top_header = TopHeader.objects.all()
     dataCar = Car.objects.all()
     dataImage = CarImage.objects.all()
+    feature = Feature.objects.all()
+    footer_section = FooterSection.objects.all()
     context = {
         'dataCars': dataCar,
-        'dataImages': dataImage
+        'dataImages': dataImage,
+        'top_headers': top_header,
+        'features': feature,
+        'footer_sections': footer_section
     }
     return render(request, 'index.html',context)
 
 def about(request):
-    return render(request, 'about.html')
+    top_header = TopHeader.objects.all()
+    footer_section = FooterSection.objects.all()
+    context = {
+        'top_headers': top_header
+        ,'footer_sections': footer_section
+    }
+    return render(request, 'about.html', context)
 
 def blog_details(request):
-    return render(request, 'blog-details.html')
+    top_header = TopHeader.objects.all()
+    footer_section = FooterSection.objects.all()
+    context = {
+        'top_headers': top_header
+        ,'footer_sections': footer_section
+    }
+    return render(request, 'blog-details.html' , context)
 
 def blog(request):
-    return render(request, 'blog.html')
+    top_header = TopHeader.objects.all()
+    footer_section = FooterSection.objects.all()
+    context = {
+        'top_headers': top_header
+        ,'footer_sections': footer_section
+    }
+    return render(request, 'blog.html'  , context)
 
 def car(request):
+    top_header = TopHeader.objects.all()
     dataCar = Car.objects.all()
     dataImage = CarImage.objects.all()
+    footer_section = FooterSection.objects.all()
     context = {
         'dataCars': dataCar,
-        'dataImages': dataImage
+        'dataImages': dataImage,
+        'top_headers': top_header
+        ,'footer_sections': footer_section
     }
     return render(request, 'car.html',context)
 
 def car_details(request):
-    return render(request, 'car-details.html')
+    top_header = TopHeader.objects.all()
+    footer_section = FooterSection.objects.all()
+    context = {
+        'top_headers': top_header
+        ,'footer_sections': footer_section
+    }
+    return render(request, 'car-details.html', context)
 
 def contact(request):
-    return render(request, 'contact.html')
+    top_header = TopHeader.objects.all()
+    footer_section = FooterSection.objects.all()
+    context = {
+        'top_headers': top_header
+        ,'footer_sections': footer_section
+    }
+    return render(request, 'contact.html', context)
 
 def add_to_cart(request):
-    return render(request, 'add-to-cart.html')
+    top_header = TopHeader.objects.all()
+    footer_section = FooterSection.objects.all()
+    context = {
+        'top_headers': top_header
+        ,'footer_sections': footer_section
+    }   
+    return render(request, 'add-to-cart.html', context)
 
 def checkout(request):
-    return render(request, 'checkout.html')
+    top_header = TopHeader.objects.all()
+    footer_section = FooterSection.objects.all()
+    context = {
+        'top_headers': top_header
+        ,'footer_sections': footer_section
+    }
+    return render(request, 'checkout.html', context)
+
 
 
