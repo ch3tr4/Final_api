@@ -82,3 +82,4 @@ class TitleBanner2(models.Model):
     text = models.CharField(max_length=200, null=True)
     def __str__(self):
         return f'{self.title} | {self.text} '
+  
