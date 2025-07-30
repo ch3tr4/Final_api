@@ -47,7 +47,38 @@ class Feature(models.Model):
     def __str__(self):
         return f'Feature - {self.title}'
 
+class Menu(models.Model):
+    MenuNameEN = models.CharField(max_length=200, null=True)
+    OrderBy = models.IntegerField(blank=True,null=True)
+    def __str__(self):
+        return f'{self.id} | {self.MenuNameEN} '
 
-
+class MenuDetail(models.Model):
+    MenuID = models.ForeignKey(Menu, on_delete=models.CASCADE, null=True)
+    def __str__(self):         
+        return self.MenuID.MenuNameEN
     
+class TitleBanner(models.Model):
+    MenuID = models.ForeignKey(Menu, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=200, null=True)
+    text = models.CharField(max_length=200, null=True)
+    def __str__(self):
+        return f'{self.title} | {self.text} '
 
+class Menu2(models.Model):
+    MenuNameEN = models.CharField(max_length=200, null=True)
+    OrderBy = models.IntegerField(blank=True,null=True)
+    def __str__(self):
+        return f'{self.id} | {self.MenuNameEN} '
+
+class MenuDetail2(models.Model):
+    MenuID = models.ForeignKey(Menu2, on_delete=models.CASCADE, null=True)
+    def __str__(self):         
+        return self.MenuID.MenuNameEN
+    
+class TitleBanner2(models.Model):
+    MenuID = models.ForeignKey(Menu2, on_delete=models.CASCADE, null=True)
+    title = models.CharField(max_length=200, null=True)
+    text = models.CharField(max_length=200, null=True)
+    def __str__(self):
+        return f'{self.title} | {self.text} '

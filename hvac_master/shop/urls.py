@@ -11,4 +11,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('add_to_cart/', views.add_to_cart, name='add_to_cart'),
     path('checkout/', views.checkout, name='checkout'),
+    path('MenuDetailMethod/<int:pk>/', views.MenuDetailMethod, name='MenuDetailMethod'),
+    path('MenuDetailMethod2/<int:pk>/', views.MenuDetailMethod2, name='MenuDetailMethod2'),
 ]

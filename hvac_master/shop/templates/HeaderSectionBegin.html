@@ -43,18 +43,13 @@
                 <div class="header__nav">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="/">Home</a></li>
-                            <li ><a href="{% url 'car' %}">Cars</a></li>
-                            <li><a href="{% url 'blog' %}">Blog</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="{% url 'blog' %}">About Us</a></li>
-                                    <li><a href="{% url 'car_details' %}">Car Details</a></li>
-                                    <li><a href="{% url 'blog_details' %}">Blog Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{% url 'blog' %}">About</a></li>
-                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            <li><a href="{% url 'index' %}">Home</a></li>
+                            {% for menu in menus %}
+                                <li ><a href="{% url 'MenuDetailMethod' menu.id %}">{{menu.MenuNameEN}}</a></li>
+                            {% endfor %}
+                            {% for menu2 in menus2 %}
+                                <li ><a href="{% url 'MenuDetailMethod2' menu2.id %}">{{menu2.MenuNameEN}}</a></li>
+                            {% endfor %}
                         </ul>
                     </nav>
                     <div class="header__nav__widget">

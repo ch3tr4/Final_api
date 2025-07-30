@@ -10,53 +10,94 @@
     {% include 'CssStyles.html' %}
 </head>
 <body>
-    {% include 'HeaderSectionBegin.html' %}
-    <section class="checkout spad">
+        <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+     {% include 'OffcanvasMenuBegin.html' %}
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+     {% include 'HeaderSectionBegin.html' %}
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb End -->
+    <div class="breadcrumb-option set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8">
-                    <div class="checkout__form">
-                        <h4>Billing Details</h4>
-                        <form action="#" method="post">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Full Name<span>*</span></p>
-                                        <input type="text" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>Email<span>*</span></p>
-                                        <input type="email" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Address<span>*</span></p>
-                                <input type="text" required>
-                            </div>
-                            <div class="checkout__input">
-                                <p>Phone<span>*</span></p>
-                                <input type="text" required>
-                            </div>
-                            <button type="submit" class="primary-btn">Place Order</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="checkout__order">
-                        <h4>Your Order</h4>
-                        <ul>
-                            <li>Porsche Cayenne Turbo S 2019 <span>$117,000</span></li>
-                            <!-- Add more products as needed -->
-                        </ul>
-                        <div class="checkout__order__total">Total <span>$117,000</span></div>
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Check Out</h2>
+                        <div class="breadcrumb__links">
+                            <a href="/"><i class="fa fa-home"></i> Home</a>
+                            <span>Check Out</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    <!-- Breadcrumb Begin -->
+<section class="checkout py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Billing Details -->
+            <div class="col-lg-8">
+                <div class="p-4 border rounded-4 shadow-sm bg-white">
+                    <h4 class="mb-4 fw-bold">Billing Details</h4>
+                    <form action="#" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Address <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Phone <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-12 text-end mt-3">
+                                <button type="submit" class="btn btn-primary px-4">Place Order</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-lg-4">
+    <div class="p-4 border rounded-4 shadow-sm bg-light">
+        <h4 class="mb-4 fw-bold">Your Order</h4>
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="{% static 'img/cars/details/sm-1.jpg' %}" alt="Porsche" class="img-thumbnail" style="width: 60px; height: auto; border-radius: 0.5rem;">
+                    <div class="small fw-medium">Porsche Cayenne Turbo S 2019</div>
+                </div>
+                <span class="fw-semibold text-primary">$117,000</span>
+            </li>
+            <!-- Add more products with image here -->
+        </ul>
+        <div class="d-flex justify-content-between border-top pt-3 fw-bold">
+            <span>Total</span>
+            <span class="text-success">$117,000</span>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</section>
+
     {% include 'FooterSectionBegin.html' %}
     {% include 'JsPlugins.html' %}
 </body>
