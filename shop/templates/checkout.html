@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Checkout">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | HVAC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    {% include 'CssStyles.html' %}
+</head>
+<body>
+        <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Offcanvas Menu Begin -->
+     {% include 'OffcanvasMenuBegin.html' %}
+    <!-- Offcanvas Menu End -->
+
+    <!-- Header Section Begin -->
+     {% include 'HeaderSectionBegin.html' %}
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb End -->
+    <div class="breadcrumb-option set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Check Out</h2>
+                        <div class="breadcrumb__links">
+                            <a href="/"><i class="fa fa-home"></i> Home</a>
+                            <span>Check Out</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Begin -->
+<section class="checkout py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Billing Details -->
+            <div class="col-lg-8">
+                <div class="p-4 border rounded-4 shadow-sm bg-white">
+                    <h4 class="mb-4 fw-bold">Billing Details</h4>
+                    <form action="#" method="post">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Address <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Phone <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-12 text-end mt-3">
+                                <button type="submit" class="btn btn-primary px-4">Place Order</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-lg-4">
+    <div class="p-4 border rounded-4 shadow-sm bg-light">
+        <h4 class="mb-4 fw-bold">Your Order</h4>
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-3">
+                    <img src="{% static 'img/cars/details/sm-1.jpg' %}" alt="Porsche" class="img-thumbnail" style="width: 60px; height: auto; border-radius: 0.5rem;">
+                    <div class="small fw-medium">Porsche Cayenne Turbo S 2019</div>
+                </div>
+                <span class="fw-semibold text-primary">$117,000</span>
+            </li>
+            <!-- Add more products with image here -->
+        </ul>
+        <div class="d-flex justify-content-between border-top pt-3 fw-bold">
+            <span>Total</span>
+            <span class="text-success">$117,000</span>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</section>
+
+    {% include 'FooterSectionBegin.html' %}
+    {% include 'JsPlugins.html' %}
+</body>
+</html>
