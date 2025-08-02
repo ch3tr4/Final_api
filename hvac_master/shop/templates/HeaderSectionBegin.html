@@ -42,7 +42,7 @@
             <div class="col-lg-10">
                 <div class="header__nav">
                     <nav class="header__menu">
-                        <ul>
+                        <ul id="navigation">
                             {% for dataMenu in dataMenus %} 
                                     <li><a href="{% url dataMenu.url %}">{{dataMenu.menuName}}</a>
                                         <ul class=" {% if dataMenu.sub_count > 0 %}
@@ -55,7 +55,7 @@
                                         {% endfor %} 
                                         </ul>
                                     </li>
-                                    {% endfor %}
+                            {% endfor %}
                         </ul>
                     </nav>
                     <div class="header__nav__widget">

@@ -64,7 +64,6 @@ class Feature(models.Model):
         return f'Feature - {self.title}'
 
 class Car(models.Model):
-
     stock = models.CharField(max_length=200,null=True)
     laste_on_sale = models.CharField(max_length=200,null=True,blank=True)
     image = models.ImageField(upload_to='cars/', null=True, blank=True)
@@ -98,8 +97,8 @@ class ChooseUs(models.Model):
     def __str__(self):
         return f'Choose Us - {self.title}'
     
-class LastestBlog(models.Model):
-    image = models.ImageField(upload_to='latest_blogs/', null=True, blank=True)
+class Blog(models.Model):
+    image = models.ImageField(upload_to='blogs/', null=True, blank=True)
     user = models.CharField(max_length=200, null=True)
     date = models.DateField(null=True, blank=True)
     commenttitle = models.CharField(max_length=200, null=True)
@@ -107,6 +106,12 @@ class LastestBlog(models.Model):
     def __str__(self):
         return f'Latest Blog - {self.user} | {self.date}'
 
+class BlogImage(models.Model):
+    blogId = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='blog_images/', null=True, blank=True)
+    def __str__(self):
+        return f'Image for Blog by {self.blogId.user} on {self.blogId.date}'
+    
 class FooterSection(models.Model):
     title = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)

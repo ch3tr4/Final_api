@@ -15,26 +15,26 @@
       </div>
     </div>
     <div class="row">
-        {% for lastest_blog in lastest_blogs %}
+      {% for blog in blogs %}
       <div class="col-lg-4 col-md-6">
         <div class="latest__blog__item">
           <div
             class="latest__blog__item__pic set-bg"
-            data-setbg="{{lastest_blog.image.url}}">
+            data-setbg="{{blog.image.url}}"
+          >
             <ul>
-              <li>By {{lastest_blog.user}}</li>
-              <li>{{lastest_blog.date}}</li>
+              <li>By {{blog.user}}</li>
+              <li>{{blog.date}}</li>
               <li>Comment</li>
             </ul>
           </div>
           <div class="latest__blog__item__text">
-            <h5>{{lastest_blog.commenttitle}}</h5>
-            <p>{{lastest_blog.commenttext}}</p>
+            <h5>{{blog.commenttitle}}</h5>
+            <p>{{blog.commenttext}}</p>
           </div>
         </div>
       </div>
       {% endfor %}
     </div>
-    
   </div>
 </section>
