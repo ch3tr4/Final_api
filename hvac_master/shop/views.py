@@ -16,7 +16,8 @@ def index(request):
     dataCar = Car.objects.all()
     dataImage = CarImage.objects.all()
     choose_us = ChooseUs.objects.all()
-    lastest_blog = LastestBlog.objects.all()
+    blog = Blog.objects.all()
+    blogimage = BlogImage.objects.all()
     footer_section = FooterSection.objects.all()
     context = {
         'top_headers': top_header,
@@ -27,75 +28,29 @@ def index(request):
         'services': service,
         'features': feature,
         'choose_uss': choose_us,
-        'lastest_blogs': lastest_blog,
+        'blogs': blog,
+        'blogimages': blogimage,
         'dataCars': dataCar,
         'dataImages': dataImage,
         'footer_sections': footer_section,
     }
     return render(request, 'index.html',context)
 
-def MenuDetailMethod(request, pk):
-    title_banner = TitleBanner.objects.filter(MenuID = pk)
-    text_banner = TitleBanner.objects.filter(MenuID = pk)
-    top_header = TopHeader.objects.all()
-    dataCar = Car.objects.all()
-    dataImage = CarImage.objects.all()
-    feature = Feature.objects.all()
-    footer_section = FooterSection.objects.all()
-    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
-    dataSubMenu = SubMenu.objects.all() 
-    dataSub2Menu = Sub2Menu.objects.all() 
-
-    context = {
-        'title_banners' : title_banner,
-        'text_banners' : text_banner,
-        'dataCars': dataCar,
-        'dataImages': dataImage,
-        'top_headers': top_header,
-        'features': feature,
-        'footer_sections': footer_section,
-        'dataMenus': dataMenu,
-        'dataSubMenus': dataSubMenu,
-        'dataSub2Menus': dataSub2Menu,
-    }
-    return render(request, 'menu-details.html',context)
-
-def MenuDetailMethod2(request, pk):
-    title_banner = TitleBanner2.objects.filter(MenuID = pk)
-    text_banner = TitleBanner2.objects.filter(MenuID = pk)
-    top_header = TopHeader.objects.all()
-    dataCar = Car.objects.all()
-    dataImage = CarImage.objects.all()
-    feature = Feature.objects.all()
-    footer_section = FooterSection.objects.all()
-    dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
-    dataSubMenu = SubMenu.objects.all() 
-    dataSub2Menu = Sub2Menu.objects.all() 
-    context = {
-        'title_banners' : title_banner,
-        'text_banners' : text_banner,
-        'dataCars': dataCar,
-        'dataImages': dataImage,
-        'top_headers': top_header,
-        'features': feature,
-        'footer_sections': footer_section,
-        'dataMenus': dataMenu,
-        'dataSubMenus': dataSubMenu,
-        'dataSub2Menus': dataSub2Menu,
-    }
-    return render(request, 'menu-details2.html',context)
-
 def about(request):
     top_header = TopHeader.objects.all()
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all() 
+    blog = Blog.objects.all()
+    blogimage = BlogImage.objects.all()
     footer_section = FooterSection.objects.all()
     context = {
         'top_headers': top_header
         ,'dataMenus': dataMenu
         ,'dataSubMenus': dataSubMenu
         ,'dataSub2Menus': dataSub2Menu
+        ,'blogs': blog
+        ,'blogimages': blogimage
         ,'footer_sections': footer_section
     }
     return render(request, 'about.html', context)
@@ -105,12 +60,16 @@ def blog_details(request):
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))  
     dataSubMenu = SubMenu.objects.all() 
     dataSub2Menu = Sub2Menu.objects.all()
+    blog = Blog.objects.all()
+    blogimage = BlogImage.objects.all()
     footer_section = FooterSection.objects.all()
     context = {
         'top_headers': top_header
         ,'dataMenus': dataMenu
         ,'dataSubMenus': dataSubMenu
         ,'dataSub2Menus': dataSub2Menu
+        ,'blogs': blog
+        ,'blogimages': blogimage
         ,'footer_sections': footer_section
     }
     return render(request, 'blog-details.html' , context)
@@ -120,12 +79,16 @@ def blog(request):
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))
     dataSubMenu = SubMenu.objects.all()
     dataSub2Menu = Sub2Menu.objects.all()
+    blog = Blog.objects.all()
+    blogimage = BlogImage.objects.all()
     footer_section = FooterSection.objects.all()
     context = {
         'top_headers': top_header
         ,'dataMenus': dataMenu
         ,'dataSubMenus': dataSubMenu
         ,'dataSub2Menus': dataSub2Menu
+        ,'blogs': blog
+        ,'blogimages': blogimage
         ,'footer_sections': footer_section
     }
     return render(request, 'blog.html'  , context)
@@ -137,6 +100,8 @@ def car(request):
     dataSub2Menu = Sub2Menu.objects.all()
     dataCar = Car.objects.all()
     dataImage = CarImage.objects.all()
+    blog = Blog.objects.all()
+    blogimage = BlogImage.objects.all()
     footer_section = FooterSection.objects.all()
     context = {
         'dataCars': dataCar,
@@ -145,6 +110,8 @@ def car(request):
         ,'dataMenus': dataMenu
         ,'dataSubMenus': dataSubMenu
         ,'dataSub2Menus': dataSub2Menu
+        ,'blogs': blog
+        ,'blogimages': blogimage
         ,'footer_sections': footer_section
     }
     return render(request, 'car.html',context)
@@ -153,7 +120,8 @@ def car_details(request):
     top_header = TopHeader.objects.all()
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))
     dataSubMenu = SubMenu.objects.all()
-    dataSub2Menu = Sub2Menu.objects.all()
+    dataSub2Menu = Sub2Menu.objects.all()  
+    
     footer_section = FooterSection.objects.all()
     context = {
         'top_headers': top_header
