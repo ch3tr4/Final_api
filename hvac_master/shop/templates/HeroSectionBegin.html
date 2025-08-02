@@ -1,22 +1,25 @@
 {% load static %}
-<section class="hero spad set-bg" data-setbg="{% static 'img/hero-bg.jpg' %}">
+
+{% for home_banner in home_banners %}
+<section class="hero spad set-bg" data-setbg="{{home_banner.image.url}}">
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-7">
                     <div class="hero__text">
                         <div class="hero__text__title">
                             <span>FIND YOUR DREAM CAR</span>
-                            <h2>Porsche Cayenne S</h2>
+                            <h2>{{home_banner.title}}</h2>
                         </div>
                         <div class="hero__text__price">
-                            <div class="car-model">Model 2019</div>
-                            <h2>$399<span>/Month</span></h2>
+                            <div class="car-model">{{home_banner.model}}</div>
+                            <h2>${{home_banner.price}}<span>/{{home_banner.time}}</span></h2>
                         </div>
                         <a href="#" class="primary-btn"><img src="{% static 'img/wheel.png' %}" alt=""> Test Drive</a>
                         <a href="#" class="primary-btn more-btn">Learn More</a>
                     </div>
                 </div>
-                <div class="col-lg-5">
+                {% comment %} <div class="col-lg-5">
                     <div class="hero__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
@@ -155,7 +158,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
     </section>
+    {% endfor %}

@@ -2,6 +2,67 @@ from django.db import models
 
 # Create your models here.
 
+class TopHeader(models.Model):
+    shift = models.CharField(max_length=200, null=True)
+    email = models.EmailField(max_length=200, null=True)
+    phone = models.CharField(max_length=200, null=True)
+    def __str__(self):
+        return f'Top Header - {self.shift} | {self.email} | {self.phone}'
+class Menu(models.Model): 
+    menuName = models.CharField(max_length=200,null=True) 
+    url = models.CharField(max_length=200,null=True) 
+    
+    def __str__(self):
+        return f'{self.menuName}' 
+
+class SubMenu(models.Model): 
+    menuName = models.CharField(max_length=200,null=True) 
+    url = models.CharField(max_length=200,null=True) 
+    menuId= models.ForeignKey(Menu,on_delete=models.CASCADE,null=True,related_name='submenus') 
+    def __str__(self): 
+        return f'{self.menuId.menuName} -> {self.menuName}' 
+
+class Sub2Menu(models.Model): 
+    menuName = models.CharField(max_length=200,null=True) 
+    url = models.CharField(max_length=200,null=True) 
+    menuId= models.ForeignKey(SubMenu,on_delete=models.CASCADE,null=True) 
+    def __str__(self):
+        return f'{self.menuId.menuName} -> {self.menuName}' 
+    
+class HomeBanner(models.Model):
+    image = models.ImageField(upload_to='home_banners/', null=True, blank=True)
+    title = models.CharField(max_length=200, null=True)
+    model = models.CharField(max_length=200, null=True)
+    price = models.CharField(max_length=200, null=True)
+    time = models.CharField(max_length=200, null=True)
+    def __str__(self):
+        return f'Home Banner - {self.title} | {self.price}'
+
+class Service(models.Model):
+    maintitle = models.CharField(max_length=200, null=True)
+    maintext = models.TextField(null=True, blank=True)
+    image1 = models.ImageField(upload_to='services/', null=True, blank=True)
+    title1 = models.CharField(max_length=200, null=True)
+    text1 = models.TextField(null=True, blank=True)
+    image2 = models.ImageField(upload_to='services/', null=True, blank=True)
+    title2 = models.CharField(max_length=200, null=True)
+    text2 = models.TextField(null=True, blank=True)
+    image3 = models.ImageField(upload_to='services/', null=True, blank=True)
+    title3 = models.CharField(max_length=200, null=True)
+    text3 = models.TextField(null=True, blank=True)
+    image4 = models.ImageField(upload_to='services/', null=True, blank=True)
+    title4 = models.CharField(max_length=200, null=True)
+    text4 = models.TextField(null=True, blank=True)
+    def __str__(self):
+        return f'Service - {self.maintitle}'
+
+class Feature(models.Model):
+    title = models.CharField(max_length=200, null=True)
+    text = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='features/', null=True, blank=True)
+    def __str__(self):
+        return f'Feature - {self.title}'
+
 class Car(models.Model):
 
     stock = models.CharField(max_length=200,null=True)
@@ -18,46 +79,44 @@ class Car(models.Model):
     def __str__(self):
         return f'{self.name} - {self.year}'
 
+
 class CarImage(models.Model):
-    carId = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='images')
+    carId = models.ForeignKey(Car, on_delete= models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='car_images/', null=True, blank=True)
 
     def __str__(self):
         return f'Image for {self.carId.name} - {self.carId.year}'
 
-class TopHeader(models.Model):
-    shift = models.CharField(max_length=200, null=True)
-    email = models.EmailField(max_length=200, null=True)
-    phone = models.CharField(max_length=200, null=True)
+class ChooseUs(models.Model):
+    title = models.CharField(max_length=200, null=True)
+    maintext = models.TextField(null=True, blank=True)
+    text1 = models.TextField(null=True, blank=True)
+    text2 = models.TextField(null=True, blank=True)
+    text3 = models.TextField(null=True, blank=True)
+    text4 = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to='choose_us/', null=True, blank=True)
     def __str__(self):
-        return f'Top Header - {self.shift} | {self.email} | {self.phone}'
+        return f'Choose Us - {self.title}'
     
+class LastestBlog(models.Model):
+    image = models.ImageField(upload_to='latest_blogs/', null=True, blank=True)
+    user = models.CharField(max_length=200, null=True)
+    date = models.DateField(null=True, blank=True)
+    commenttitle = models.CharField(max_length=200, null=True)
+    commenttext = models.TextField(null=True, blank=True)
+    def __str__(self):
+        return f'Latest Blog - {self.user} | {self.date}'
+
 class FooterSection(models.Model):
     title = models.CharField(max_length=200, null=True)
     phone = models.CharField(max_length=200, null=True)
     email = models.EmailField(max_length=200, null=True)
-    description = models.TextField(null=True, blank=True)
+    logo = models.ImageField(upload_to='footer/', null=True, blank=True)
+    image = models.ImageField(upload_to='footer/', null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
     def __str__(self):
         return f'Footer - {self.title} | {self.phone} | {self.email}'
 
-class Feature(models.Model):
-    title = models.CharField(max_length=200, null=True)
-    description = models.TextField(null=True, blank=True)
-
-    def __str__(self):
-        return f'Feature - {self.title}'
-
-class Menu(models.Model):
-    MenuNameEN = models.CharField(max_length=200, null=True)
-    OrderBy = models.IntegerField(blank=True,null=True)
-    def __str__(self):
-        return f'{self.id} | {self.MenuNameEN} '
-
-class MenuDetail(models.Model):
-    MenuID = models.ForeignKey(Menu, on_delete=models.CASCADE, null=True)
-    def __str__(self):         
-        return self.MenuID.MenuNameEN
-    
 class TitleBanner(models.Model):
     MenuID = models.ForeignKey(Menu, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200, null=True)
@@ -65,19 +124,8 @@ class TitleBanner(models.Model):
     def __str__(self):
         return f'{self.title} | {self.text} '
 
-class Menu2(models.Model):
-    MenuNameEN = models.CharField(max_length=200, null=True)
-    OrderBy = models.IntegerField(blank=True,null=True)
-    def __str__(self):
-        return f'{self.id} | {self.MenuNameEN} '
-
-class MenuDetail2(models.Model):
-    MenuID = models.ForeignKey(Menu2, on_delete=models.CASCADE, null=True)
-    def __str__(self):         
-        return self.MenuID.MenuNameEN
-    
 class TitleBanner2(models.Model):
-    MenuID = models.ForeignKey(Menu2, on_delete=models.CASCADE, null=True)
+    MenuID = models.ForeignKey(Menu, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200, null=True)
     text = models.CharField(max_length=200, null=True)
     def __str__(self):

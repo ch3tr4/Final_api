@@ -43,21 +43,27 @@
                 <div class="header__nav">
                     <nav class="header__menu">
                         <ul>
-                            <li><a href="{% url 'index' %}">Home</a></li>
-                            {% for menu in menus %}
-                                <li ><a href="{% url 'MenuDetailMethod' menu.id %}">{{menu.MenuNameEN}}</a></li>
-                            {% endfor %}
-                            {% for menu2 in menus2 %}
-                                <li ><a href="{% url 'MenuDetailMethod2' menu2.id %}">{{menu2.MenuNameEN}}</a></li>
-                            {% endfor %}
+                            {% for dataMenu in dataMenus %} 
+                                    <li><a href="{% url dataMenu.url %}">{{dataMenu.menuName}}</a>
+                                        <ul class=" {% if dataMenu.sub_count > 0 %}
+                                                        submenu
+                                                    {% endif %} "> 
+                                        {% for dataSubMenu in dataSubMenus %} 
+                                            {% if dataMenu.id == dataSubMenu.menuId_id %} 
+                                            <li><a href="{% url dataSubMenu.url %}">{{dataSubMenu.menuName}}</a></li> 
+                                            {% endif %} 
+                                        {% endfor %} 
+                                        </ul>
+                                    </li>
+                                    {% endfor %}
                         </ul>
                     </nav>
                     <div class="header__nav__widget">
                         <div class="header__nav__widget__btn">
-                            <a href="#"><i class="fa fa-cart-plus"></i></a>
+                            <a href="{% url 'add_to_cart' %}"><i class="fa fa-cart-plus"></i></a>
                             <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
                         </div>
-                        <a href="#" class="primary-btn">Add Car</a>
+                        <a href="{% url 'checkout' %}" class="primary-btn">Check Out</a>
                     </div>
                 </div>
             </div>
