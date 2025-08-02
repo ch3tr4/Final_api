@@ -1,15 +1,16 @@
 {% load static %}
-<footer class="footer set-bg" data-setbg="{% static 'img/footer-bg.jpg' %}">
+{% for footer_section in footer_sections %}
+<footer class="footer set-bg" data-setbg="{{footer_section.image.url}}">
         <div class="container">
-            {% for footer_section in footer_sections %}
+            
                 <div class="footer__contact">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-6 text-center">
                         <div class="footer__contact__title">
                             <h2>{{footer_section.title}}</h2>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6 col-md-6 text-center">
                         <div class="footer__contact__option">
                             <div class="option__item"><i class="fa fa-phone"></i>{{footer_section.phone}}</div>
                             <div class="option__item email"><i class="fa fa-envelope-o"></i>{{footer_section.email}}</div>
@@ -17,14 +18,14 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-4 text-center">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="{% static 'img/footer-logo.png' %}" alt=""></a>
+                            <a href="#"><img src="{{footer_section.logo.url}}" alt=""></a>
                         </div>
                         <p>
-                            {{footer_section.description}}
+                            {{footer_section.text}}
                         </p>
                         <div class="footer__social">
                             <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
@@ -34,7 +35,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3">
+                {% comment %} <div class="col-lg-2 offset-lg-1 col-md-3">
                     <div class="footer__widget">
                         <h5>Infomation</h5>
                         <ul>
@@ -72,13 +73,14 @@
                             <li><a href="#"><i class="fa fa-angle-right"></i> Honda</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            <div class="footer__copyright__text">
+            <div class="footer__copyright__text text-center">
                 <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
             </div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            {% endfor %}   
+           
         </div>
     </footer>
+ {% endfor %}   

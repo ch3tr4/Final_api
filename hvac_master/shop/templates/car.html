@@ -89,16 +89,17 @@
                                     <div class="car__item__text__inner">
                                         <div class="label-date">{{dataCar.year}}</div>
                                         <h5><a href="#">{{dataCar.name}}</a></h5>
-                                        <ul>
+                                        <ul style="display: flex; gap: 10px; padding: 0; margin: 0; list-style: none;">
                                             <li><span>{{dataCar.mile}}</span> mi</li>
                                             <li>{{dataCar.tranmission}}</li>
                                             <li><span>{{dataCar.housepw}}</span> hp</li>
                                         </ul>
+                                        
                                     </div>
                                     <div class="car__item__price">
                                         <span class="car-option">For Rent</span>
                                         <h6>${{dataCar.originalPrice}}</h6>
-                                        <h6>${{dataCar.price}}</h6>
+                                        {% comment %} <h6>${{dataCar.price}}</h6> {% endcomment %}
                                     </div>
                                 </div>
                             </div>
