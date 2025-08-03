@@ -118,18 +118,21 @@ def car(request):
     }
     return render(request, 'car.html',context)
 
-def car_details(request):
+def car_details(request, id):
     top_header = TopHeader.objects.all()
     dataMenu = Menu.objects.annotate(sub_count = Count('submenus'))
     dataSubMenu = SubMenu.objects.all()
-    dataSub2Menu = Sub2Menu.objects.all()  
-    
+    dataSub2Menu = Sub2Menu.objects.all()
+    cardetail = CarDetails.objects.filter(carId = id)
+    cardetailimage = CarDetailImage.objects.filter(carId = id)
     footer_section = FooterSection.objects.all()
     context = {
         'top_headers': top_header
         ,'dataMenus': dataMenu
         ,'dataSubMenus': dataSubMenu
         ,'dataSub2Menus': dataSub2Menu
+        ,'cardetails': cardetail
+        ,'cardetailimages': cardetailimage
         ,'footer_sections': footer_section
     }
     return render(request, 'car-details.html', context)

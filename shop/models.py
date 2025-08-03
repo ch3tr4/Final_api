@@ -68,7 +68,6 @@ class Car(models.Model):
     laste_on_sale = models.CharField(max_length=200,null=True,blank=True)
     image = models.ImageField(upload_to='cars/', null=True, blank=True)
     vin = models.CharField(max_length=200,null=True)
-    originalPrice = models.CharField(max_length=200,null=True)
     price = models.CharField(max_length=200,null=True)
     name = models.CharField(max_length=200,null=True)
     year = models.CharField(max_length=200,null=True)
@@ -77,6 +76,27 @@ class Car(models.Model):
     housepw = models.CharField(max_length=200,null=True)
     def __str__(self):
         return f'{self.name} - {self.year}'
+    
+# -----------------------------------
+class CarDetails(models.Model):
+    carId = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='cardetails')
+    title = models.CharField(max_length=200,null=True)
+    name = models.CharField(max_length=200,null=True)
+    image = models.ImageField(upload_to='cars/', null=True, blank=True)
+    stock = models.CharField(max_length=200,null=True)
+    vin = models.CharField(max_length=200,null=True)
+    price = models.CharField(max_length=200,null=True)
+    text = models.TextField(null=True, blank=True)
+    def __str__(self):
+        return self.name
+    
+class CarDetailImage(models.Model):
+    carId = models.ForeignKey(Car, on_delete=models.CASCADE, related_name='cardetailimages')
+    image = models.ImageField(upload_to='cars/', null=True, blank=True)
+    def __str__(self):
+        return f'Image for - {self.id} - {self.carId.name}'
+    
+    # =============================
 
 
 class CarImage(models.Model):

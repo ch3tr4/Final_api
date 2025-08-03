@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-     {% include 'CssStyles.html' %}
+    {% include 'CssStyles.html' %}
 </head>
 
 <body>
@@ -24,11 +24,11 @@
     </div>
 
     <!-- Offcanvas Menu Begin -->
-     {% include 'OffcanvasMenuBegin.html' %}
+    {% include 'OffcanvasMenuBegin.html' %}
     <!-- Offcanvas Menu End -->
 
     <!-- Header Section Begin -->
-     {% include 'HeaderSectionBegin.html' %}
+    {% include 'HeaderSectionBegin.html' %}
     <!-- Header Section End -->
 
     <!-- Breadcrumb End -->
@@ -37,12 +37,14 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Porsche Cayenne Turbo S 2019</h2>
+                        {% for cardetail in cardetails %}
+                        <h2>{{ cardetail.title }}</h2>
                         <div class="breadcrumb__links">
                             <a href="/"><i class="fa fa-home"></i> Home</a>
                             <a href="#">Car Listing</a>
-                            <span>Porsche cayenne turbo s</span>
+                            <span>{{ cardetail.title }}</span>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -56,413 +58,48 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="car__details__pic">
+                        <!-- Large Image Display -->
                         <div class="car__details__pic__large">
-                            <img class="car-big-img" src="{% static 'img/cars/details/cd-1.jpg' %}" alt="">
+                            {% if cardetails %}
+                            <img id="mainCarImage" src="{{ cardetails.0.image.url }}" alt="">
+                            {% endif %}
                         </div>
+                        <!-- Thumbnails Carousel -->
                         <div class="car-thumbs">
                             <div class="car-thumbs-track car__thumb__slider owl-carousel">
-                                <div class="ct" data-imgbigurl="{% static 'img/cars/details/cd-2.jpg' %}"><img
-                                        src="{% static 'img/cars/details/sm-1.jpg' %}" alt=""></div>
-                                <div class="ct" data-imgbigurl="{% static 'img/cars/details/cd-3.jpg' %}"><img
-                                        src="{% static 'img/cars/details/sm-2.jpg' %}" alt=""></div>
-                                <div class="ct" data-imgbigurl="{% static 'img/cars/details/cd-4.jpg' %}"><img
-                                        src="{% static 'img/cars/details/sm-3.jpg' %}" alt=""></div>
-                                <div class="ct" data-imgbigurl="{% static 'img/cars/details/cd-5.jpg' %}"><img
-                                        src="{% static 'img/cars/details/sm-4.jpg' %}" alt=""></div>
-                                <div class="ct" data-imgbigurl="{% static 'img/cars/details/cd-6.jpg' %}"><img
-                                        src="{% static 'img/cars/details/sm-5.jpg' %}" alt=""></div>
+                                {% for cardetailimage in cardetailimages %}
+                                <div class="ct" data-imgbigurl="{{ cardetailimage.image.url }}">
+                                    <img src="{{ cardetailimage.image.url }}" alt="" class="thumb-img"
+                                        style="cursor:pointer;">
+                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
-                    <div class="car__details__tab">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Vehicle
-                                    Overview</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Technical</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Features & Options</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Vehicle Location</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="car__details__tab__info">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="car__details__tab__info__item">
-                                                <h5>General Information</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check"></i> Pellentesque lacus urna, feugiat non
-                                                        consectetur nec</li>
-                                                    <li><i class="fa fa-check"></i> Aliquam sem neque, efficitur atero
-                                                        lectus vitae.</li>
-                                                    <li><i class="fa fa-check"></i> Pellentesque erat libero, eleifend
-                                                        sit amet felis ido.</li>
-                                                    <li><i class="fa fa-check"></i> Maecenas eget consectetur quam.
-                                                        Vestibulum ligula.</li>
-                                                    <li><i class="fa fa-check"></i> Praesent lorem sapien, vestibulum
-                                                        eget aliquet et.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="car__details__tab__info__item">
-                                                <h5>General Information</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check"></i> Pellentesque lacus urna, feugiat non
-                                                        consectetur nec</li>
-                                                    <li><i class="fa fa-check"></i> Aliquam sem neque, efficitur atero
-                                                        lectus vitae.</li>
-                                                    <li><i class="fa fa-check"></i> Pellentesque erat libero, eleifend
-                                                        sit amet felis ido.</li>
-                                                    <li><i class="fa fa-check"></i> Maecenas eget consectetur quam.
-                                                        Vestibulum ligula.</li>
-                                                    <li><i class="fa fa-check"></i> Praesent lorem sapien, vestibulum
-                                                        eget aliquet et.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="car__details__tab__feature">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Interior Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Auxiliary heating</li>
-                                                    <li><i class="fa fa-check-circle"></i> Bluetooth</li>
-                                                    <li><i class="fa fa-check-circle"></i> CD player</li>
-                                                    <li><i class="fa fa-check-circle"></i> Central locking</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Safety Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Head-up display</li>
-                                                    <li><i class="fa fa-check-circle"></i> MP3 interface</li>
-                                                    <li><i class="fa fa-check-circle"></i> Navigation system</li>
-                                                    <li><i class="fa fa-check-circle"></i> Panoramic roof</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Extra Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Alloy wheels</li>
-                                                    <li><i class="fa fa-check-circle"></i> Electric side mirror</li>
-                                                    <li><i class="fa fa-check-circle"></i> Sports package</li>
-                                                    <li><i class="fa fa-check-circle"></i> Sports suspension</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Extra Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> MP3 interface</li>
-                                                    <li><i class="fa fa-check-circle"></i> Navigation system</li>
-                                                    <li><i class="fa fa-check-circle"></i> Panoramic roof</li>
-                                                    <li><i class="fa fa-check-circle"></i> Parking sensors</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <div class="car__details__tab__info">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="car__details__tab__info__item">
-                                                <h5>General Information2</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check"></i> Pellentesque lacus urna, feugiat non
-                                                        consectetur nec</li>
-                                                    <li><i class="fa fa-check"></i> Aliquam sem neque, efficitur atero
-                                                        lectus vitae.</li>
-                                                    <li><i class="fa fa-check"></i> Pellentesque erat libero, eleifend
-                                                        sit amet felis ido.</li>
-                                                    <li><i class="fa fa-check"></i> Maecenas eget consectetur quam.
-                                                        Vestibulum ligula.</li>
-                                                    <li><i class="fa fa-check"></i> Praesent lorem sapien, vestibulum
-                                                        eget aliquet et.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="car__details__tab__info__item">
-                                                <h5>General Information</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check"></i> Pellentesque lacus urna, feugiat non
-                                                        consectetur nec</li>
-                                                    <li><i class="fa fa-check"></i> Aliquam sem neque, efficitur atero
-                                                        lectus vitae.</li>
-                                                    <li><i class="fa fa-check"></i> Pellentesque erat libero, eleifend
-                                                        sit amet felis ido.</li>
-                                                    <li><i class="fa fa-check"></i> Maecenas eget consectetur quam.
-                                                        Vestibulum ligula.</li>
-                                                    <li><i class="fa fa-check"></i> Praesent lorem sapien, vestibulum
-                                                        eget aliquet et.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="car__details__tab__feature">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Interior Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Auxiliary heating</li>
-                                                    <li><i class="fa fa-check-circle"></i> Bluetooth</li>
-                                                    <li><i class="fa fa-check-circle"></i> CD player</li>
-                                                    <li><i class="fa fa-check-circle"></i> Central locking</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Safety Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Head-up display</li>
-                                                    <li><i class="fa fa-check-circle"></i> MP3 interface</li>
-                                                    <li><i class="fa fa-check-circle"></i> Navigation system</li>
-                                                    <li><i class="fa fa-check-circle"></i> Panoramic roof</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Extra Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Alloy wheels</li>
-                                                    <li><i class="fa fa-check-circle"></i> Electric side mirror</li>
-                                                    <li><i class="fa fa-check-circle"></i> Sports package</li>
-                                                    <li><i class="fa fa-check-circle"></i> Sports suspension</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Extra Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> MP3 interface</li>
-                                                    <li><i class="fa fa-check-circle"></i> Navigation system</li>
-                                                    <li><i class="fa fa-check-circle"></i> Panoramic roof</li>
-                                                    <li><i class="fa fa-check-circle"></i> Parking sensors</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                <div class="car__details__tab__info">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="car__details__tab__info__item">
-                                                <h5>General Information3</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check"></i> Pellentesque lacus urna, feugiat non
-                                                        consectetur nec</li>
-                                                    <li><i class="fa fa-check"></i> Aliquam sem neque, efficitur atero
-                                                        lectus vitae.</li>
-                                                    <li><i class="fa fa-check"></i> Pellentesque erat libero, eleifend
-                                                        sit amet felis ido.</li>
-                                                    <li><i class="fa fa-check"></i> Maecenas eget consectetur quam.
-                                                        Vestibulum ligula.</li>
-                                                    <li><i class="fa fa-check"></i> Praesent lorem sapien, vestibulum
-                                                        eget aliquet et.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="car__details__tab__info__item">
-                                                <h5>General Information</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check"></i> Pellentesque lacus urna, feugiat non
-                                                        consectetur nec</li>
-                                                    <li><i class="fa fa-check"></i> Aliquam sem neque, efficitur atero
-                                                        lectus vitae.</li>
-                                                    <li><i class="fa fa-check"></i> Pellentesque erat libero, eleifend
-                                                        sit amet felis ido.</li>
-                                                    <li><i class="fa fa-check"></i> Maecenas eget consectetur quam.
-                                                        Vestibulum ligula.</li>
-                                                    <li><i class="fa fa-check"></i> Praesent lorem sapien, vestibulum
-                                                        eget aliquet et.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="car__details__tab__feature">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Interior Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Auxiliary heating</li>
-                                                    <li><i class="fa fa-check-circle"></i> Bluetooth</li>
-                                                    <li><i class="fa fa-check-circle"></i> CD player</li>
-                                                    <li><i class="fa fa-check-circle"></i> Central locking</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Safety Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Head-up display</li>
-                                                    <li><i class="fa fa-check-circle"></i> MP3 interface</li>
-                                                    <li><i class="fa fa-check-circle"></i> Navigation system</li>
-                                                    <li><i class="fa fa-check-circle"></i> Panoramic roof</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Extra Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Alloy wheels</li>
-                                                    <li><i class="fa fa-check-circle"></i> Electric side mirror</li>
-                                                    <li><i class="fa fa-check-circle"></i> Sports package</li>
-                                                    <li><i class="fa fa-check-circle"></i> Sports suspension</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Extra Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> MP3 interface</li>
-                                                    <li><i class="fa fa-check-circle"></i> Navigation system</li>
-                                                    <li><i class="fa fa-check-circle"></i> Panoramic roof</li>
-                                                    <li><i class="fa fa-check-circle"></i> Parking sensors</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-4" role="tabpanel">
-                                <div class="car__details__tab__info">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="car__details__tab__info__item">
-                                                <h5>General Information4</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check"></i> Pellentesque lacus urna, feugiat non
-                                                        consectetur nec</li>
-                                                    <li><i class="fa fa-check"></i> Aliquam sem neque, efficitur atero
-                                                        lectus vitae.</li>
-                                                    <li><i class="fa fa-check"></i> Pellentesque erat libero, eleifend
-                                                        sit amet felis ido.</li>
-                                                    <li><i class="fa fa-check"></i> Maecenas eget consectetur quam.
-                                                        Vestibulum ligula.</li>
-                                                    <li><i class="fa fa-check"></i> Praesent lorem sapien, vestibulum
-                                                        eget aliquet et.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <div class="car__details__tab__info__item">
-                                                <h5>General Information</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check"></i> Pellentesque lacus urna, feugiat non
-                                                        consectetur nec</li>
-                                                    <li><i class="fa fa-check"></i> Aliquam sem neque, efficitur atero
-                                                        lectus vitae.</li>
-                                                    <li><i class="fa fa-check"></i> Pellentesque erat libero, eleifend
-                                                        sit amet felis ido.</li>
-                                                    <li><i class="fa fa-check"></i> Maecenas eget consectetur quam.
-                                                        Vestibulum ligula.</li>
-                                                    <li><i class="fa fa-check"></i> Praesent lorem sapien, vestibulum
-                                                        eget aliquet et.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="car__details__tab__feature">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Interior Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Auxiliary heating</li>
-                                                    <li><i class="fa fa-check-circle"></i> Bluetooth</li>
-                                                    <li><i class="fa fa-check-circle"></i> CD player</li>
-                                                    <li><i class="fa fa-check-circle"></i> Central locking</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Safety Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Head-up display</li>
-                                                    <li><i class="fa fa-check-circle"></i> MP3 interface</li>
-                                                    <li><i class="fa fa-check-circle"></i> Navigation system</li>
-                                                    <li><i class="fa fa-check-circle"></i> Panoramic roof</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Extra Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> Alloy wheels</li>
-                                                    <li><i class="fa fa-check-circle"></i> Electric side mirror</li>
-                                                    <li><i class="fa fa-check-circle"></i> Sports package</li>
-                                                    <li><i class="fa fa-check-circle"></i> Sports suspension</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="car__details__tab__feature__item">
-                                                <h5>Extra Design</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-check-circle"></i> MP3 interface</li>
-                                                    <li><i class="fa fa-check-circle"></i> Navigation system</li>
-                                                    <li><i class="fa fa-check-circle"></i> Panoramic roof</li>
-                                                    <li><i class="fa fa-check-circle"></i> Parking sensors</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <div class="car__details__text">
+                        {% for cardetail in cardetails %}
+                        <h2>{{ cardetail.title }}</h2>
+                        <br>
+                        <p>{{ cardetail.text }}</p>
+                        {% endfor %}
+                </div> 
+                    </div> 
                 <div class="col-lg-3">
                     <div class="car__details__sidebar">
+                        {% for cardetail in cardetails %}
                         <div class="car__details__sidebar__model">
                             <ul>
-                                <li>Stock <span>K99D10459934</span></li>
-                                <li>Vin <span>3VWKM245686</span></li>
+                                <li>Stock <span>{{cardetail.stock}}</span></li>
+                                <li>Vin <span>{{cardetail.vin}}</span></li>
                             </ul>
                         </div>
                         <div class="car__details__sidebar__payment">
                             <ul>
-                                <li style="text-decoration:line-through;">Original-Price <span style="text-decoration: line-through;">$120,000</span></li>
-                                <li>Price <span>$117,000</span></li>
+                                <li>Price <span>$ {{ cardetail.price }}</span></li>
                             </ul>
-                            <a href="#" class="primary-btn"><i class="fa fa-credit-card"></i> Express Purchase</a>
-                            <a href="#" class="primary-btn sidebar-btn"><i class="fa fa-sliders"></i> Build Payment</a>
-                            <a href="#" class="primary-btn sidebar-btn"><i class="fa fa-money"></i> Value Trade</a>
+                            <a href="#" class="primary-btn"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -475,11 +112,26 @@
     <!-- Footer Section End -->
 
     <!-- Search Begin -->
-     {% include 'SearchBegin.html' %}
+    {% include 'SearchBegin.html' %}
     <!-- Search End -->
 
     <!-- Js Plugins -->
-     {% include 'JsPlugins.html' %}
+    {% include 'JsPlugins.html' %}
+
+    <!-- Add this script before </body> to handle thumbnail clicks -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var mainImg = document.getElementById('mainCarImage');
+            var thumbs = document.querySelectorAll('.thumb-img');
+            thumbs.forEach(function (thumb) {
+                thumb.addEventListener('click', function () {
+                    if (mainImg) {
+                        mainImg.src = this.src;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

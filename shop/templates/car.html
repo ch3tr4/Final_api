@@ -54,29 +54,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="car__filter__option">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="car__filter__option__item">
-                                    <h6>Show On Page</h6>
-                                    <select>
-                                        <option value="">9 Car</option>
-                                        <option value="">15 Car</option>
-                                        <option value="">20 Car</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="car__filter__option__item car__filter__option__item--right">
-                                    <h6>Sort By</h6>
-                                    <select>
-                                        <option value="">Price: Highest Fist</option>
-                                        <option value="">Price: Lowest Fist</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row">
                         {% for dataCar in dataCars %}
                         <div class="col-lg-4 col-md-4">
@@ -88,7 +65,7 @@
                                 <div class="car__item__text">
                                     <div class="car__item__text__inner">
                                         <div class="label-date">{{dataCar.year}}</div>
-                                        <h5><a href="#">{{dataCar.name}}</a></h5>
+                                        <h5><a href="{% url 'car_details' dataCar.id %}">{{dataCar.name}}</a></h5>
                                         <ul style="display: flex; gap: 10px; padding: 0; margin: 0; list-style: none;">
                                             <li><span>{{dataCar.mile}}</span> mi</li>
                                             <li>{{dataCar.tranmission}}</li>
@@ -97,8 +74,7 @@
                                         
                                     </div>
                                     <div class="car__item__price">
-                                        <span class="car-option">For Rent</span>
-                                        <h6>${{dataCar.originalPrice}}</h6>
+                                        <span class="car-option">For Sale</span>
                                         <h6>${{dataCar.price}}</h6>
                                     </div>
                                 </div>
