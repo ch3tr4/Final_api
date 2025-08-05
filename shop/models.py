@@ -166,3 +166,10 @@ class TitleBanner2(models.Model):
     def __str__(self):
         return f'{self.title} | {self.text} '
   
+
+class AccessToken(models.Model):
+    token = models.CharField(max_length=255, unique=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.token

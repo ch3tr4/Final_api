@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="zxx">
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Add to Cart">
@@ -9,18 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     {% include 'CssStyles.html' %}
 </head>
+
 <body>
-        <!-- Page Preloder -->
+    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
     <!-- Offcanvas Menu Begin -->
-     {% include 'OffcanvasMenuBegin.html' %}
+    {% include 'OffcanvasMenuBegin.html' %}
     <!-- Offcanvas Menu End -->
 
     <!-- Header Section Begin -->
-     {% include 'HeaderSectionBegin.html' %}
+    {% include 'HeaderSectionBegin.html' %}
     <!-- Header Section End -->
 
     <!-- Breadcrumb End -->
@@ -42,50 +44,83 @@
     <!-- Breadcrumb Begin -->
 
     <section class="cart py-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="table-responsive shadow rounded-4 overflow-hidden">
-                    <table class="table align-middle text-center mb-0">
-                        <thead class="bg-light">
-                            <tr>
-                                <th scope="col">Product</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                                <th scope="col">Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="d-flex align-items-center gap-3 p-3">
-                                    <img src="{% static 'img/cars/details/sm-1.jpg' %}" alt="" class="img-thumbnail" style="width: 80px; height: auto;">
-                                    <p class="mb-0 fw-semibold">Porsche Cayenne Turbo S 2019</p>
-                                </td>
-                                <td class="text-primary fw-semibold">$117,000</td>
-                                <td>
-                                    <input type="number" value="1" min="1" class="form-control text-center w-50 mx-auto">
-                                </td>
-                                <td class="text-success fw-semibold">$117,000</td>
-                                <td>
-                                    <a href="#" class="btn btn-danger btn-sm">Remove</a>
-                                </td>
-                            </tr>
-                            <!-- Add more rows if needed -->
-                        </tbody>
-                    </table>
-                </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="table-responsive shadow rounded-4 overflow-hidden">
+                        <table class="table align-middle text-center mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                    <th scope="col">Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for id, item in cart_items %}
+                                <tr>
+                                    <td class="d-flex align-items-center gap-3 p-3">
+                                        {% if item.image %}
+                                        <img src="{{ item.image }}" alt="{{ item.name }}" class="img-thumbnail"
+                                            style="width: 80px; height: auto;">
+                                        {% else %}
+                                        <img src="{% static 'img/no-image.png' %}" alt="No image" class="img-thumbnail"
+                                            style="width: 80px; height: auto;">
+                                        {% endif %}
+                                        <p class="mb-0 fw-semibold">{{ item.name }}</p>
+                                    </td>
+                                    <td class="text-primary fw-semibold">${{ item.price }}</td>
+                                    <td>
+                                        <input type="number" value="{{ item.quantity }}" min="1"
+                                            class="form-control text-center w-50 mx-auto">
+                                    </td>
+                                    <td class="text-success fw-semibold">${{ item.subtotal|floatformat:2 }}</td>
+                                    <td>
+                                        <a href="{% url 'remove_from_cart' id %}"
+                                            class="btn btn-danger btn-sm remove-cart-item"
+                                            data-remove-url="{% url 'remove_from_cart' id %}">Remove</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                <!-- Add more rows if needed -->
+                            </tbody>
+                        </table>
+                    </div>
 
-                <div class="d-flex justify-content-between align-items-center mt-4">
-                    <a href="/car-details" class="btn btn-outline-secondary">← Continue Shopping</a>
-                    <a href="/checkout" class="btn btn-primary px-4">Proceed to Checkout →</a>
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <a href="{% url 'car' %}" class="btn btn-outline-secondary">← Continue Shopping</a>
+                        <a href="{% url 'checkout' %}" class="btn btn-primary px-4">Proceed to Checkout →</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     {% include 'FooterSectionBegin.html' %}
     {% include 'JsPlugins.html' %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.remove-cart-item').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var row = btn.closest('tr');
+                    fetch(btn.getAttribute('data-remove-url'), {
+                        method: 'GET',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                row.remove();
+                            }
+                        });
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>

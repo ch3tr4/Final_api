@@ -18,7 +18,8 @@
       {% for blog in blogs %}
       <div class="col-lg-4 col-md-6">
         <div class="latest__blog__item">
-          <div
+          <a href="{% url 'blog_details' blog.id %}">
+            <div
             class="latest__blog__item__pic set-bg"
             data-setbg="{{blog.image.url}}"
           >
@@ -30,8 +31,9 @@
           </div>
           <div class="latest__blog__item__text">
             <h5>{{blog.commenttitle}}</h5>
-            <p>{{blog.commenttext}}</p>
+            <!-- <p>{{blog.commenttext}}</p> -->
           </div>
+          
         </div>
       </div>
       {% endfor %}

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,24 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop',
     'ckeditor',
+    'rest_framework',
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_title": "My Project Admin",
+    "site_header": "My Admin Dashboard",
+    "welcome_sign": "Welcome to My Admin",
+    "copyright": "My Company",
+    "search_model": "auth.User",
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "icons": {
+        "auth.User": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "shop.Car": "fas fa-tags",
+        "shop.CarDetails": "fas fa-boxes",
+    }
+}
 
 STATIC_URL = 'static/'
 

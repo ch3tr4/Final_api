@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop',
     'ckeditor',
+    'rest_framework',
+    'ckeditor_uploader',
+    'api',
 ]
+
 
 STATIC_URL = 'static/'
 
